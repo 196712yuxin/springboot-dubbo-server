@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.spring.springboot.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="org.spring.springboot.domain.SysUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="display_name" jdbcType="VARCHAR" property="displayName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="cellphone" jdbcType="VARCHAR" property="cellphone" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="login_err_count" jdbcType="INTEGER" property="loginErrCount" />
+    <result column="is_locked" jdbcType="CHAR" property="isLocked" />
+    <result column="is_active" jdbcType="CHAR" property="isActive" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="jobnum" jdbcType="VARCHAR" property="jobnum" />
+    <result column="ipphone" jdbcType="VARCHAR" property="ipphone" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_updated_by" jdbcType="INTEGER" property="lastUpdatedBy" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="pwdexpiredate" jdbcType="TIMESTAMP" property="pwdexpiredate" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="wcode" jdbcType="VARCHAR" property="wcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, display_name, email, cellphone, last_login_time, last_login_ip, 
+    login_err_count, is_locked, is_active, address, jobnum, ipphone, gender, created_by, 
+    created_time, last_updated_by, last_updated_time, pwdexpiredate, open_id, wcode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.spring.springboot.domain.SysUser">
+    insert into t_sys_user (id, username, password, 
+      display_name, email, cellphone, 
+      last_login_time, last_login_ip, login_err_count, 
+      is_locked, is_active, address, 
+      jobnum, ipphone, gender, 
+      created_by, created_time, last_updated_by, 
+      last_updated_time, pwdexpiredate, open_id, 
+      wcode)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{displayName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, #{loginErrCount,jdbcType=INTEGER}, 
+      #{isLocked,jdbcType=CHAR}, #{isActive,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, 
+      #{jobnum,jdbcType=VARCHAR}, #{ipphone,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{lastUpdatedBy,jdbcType=INTEGER}, 
+      #{lastUpdatedTime,jdbcType=TIMESTAMP}, #{pwdexpiredate,jdbcType=TIMESTAMP}, #{openId,jdbcType=VARCHAR}, 
+      #{wcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.spring.springboot.domain.SysUser">
+    insert into t_sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="displayName != null">
+        display_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="cellphone != null">
+        cellphone,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="loginErrCount != null">
+        login_err_count,
+      </if>
+      <if test="isLocked != null">
+        is_locked,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="jobnum != null">
+        jobnum,
+      </if>
+      <if test="ipphone != null">
+        ipphone,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+      <if test="pwdexpiredate != null">
+        pwdexpiredate,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="wcode != null">
+        wcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginErrCount != null">
+        #{loginErrCount,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=CHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnum != null">
+        #{jobnum,jdbcType=VARCHAR},
+      </if>
+      <if test="ipphone != null">
+        #{ipphone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwdexpiredate != null">
+        #{pwdexpiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wcode != null">
+        #{wcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.spring.springboot.domain.SysUser">
+    update t_sys_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        display_name = #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        cellphone = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginErrCount != null">
+        login_err_count = #{loginErrCount,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        is_locked = #{isLocked,jdbcType=CHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnum != null">
+        jobnum = #{jobnum,jdbcType=VARCHAR},
+      </if>
+      <if test="ipphone != null">
+        ipphone = #{ipphone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwdexpiredate != null">
+        pwdexpiredate = #{pwdexpiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wcode != null">
+        wcode = #{wcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.spring.springboot.domain.SysUser">
+    update t_sys_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      display_name = #{displayName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      login_err_count = #{loginErrCount,jdbcType=INTEGER},
+      is_locked = #{isLocked,jdbcType=CHAR},
+      is_active = #{isActive,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      jobnum = #{jobnum,jdbcType=VARCHAR},
+      ipphone = #{ipphone,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=INTEGER},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      pwdexpiredate = #{pwdexpiredate,jdbcType=TIMESTAMP},
+      open_id = #{openId,jdbcType=VARCHAR},
+      wcode = #{wcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getUserByUsernameAndPassword" statementType="CALLABLE" parameterType="java.util.Map">
+    call user_login(
+      #{user},
+      #{pwd},
+      #{ip},
+      #{login_user_id, jdbcType=INTEGER, mode=OUT},
+      #{err_code, jdbcType=INTEGER, mode=OUT},
+      #{err_msg, jdbcType=VARCHAR, mode=OUT}
+    )
+  </select>
+  <select id="select" parameterType="org.spring.springboot.domain.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_user
+    <trim prefix="where" prefixOverrides="AND">
+      <if test="username != null">
+        AND username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        AND password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="displayName != null">
+        AND display_name = #{displayName,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null">
+        AND email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="cellphone != null">
+        AND cellphone = #{cellphone,jdbcType=VARCHAR}
+      </if>
+      <if test="lastLoginTime != null">
+        AND last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="lastLoginIp != null">
+        AND last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
+      </if>
+      <if test="loginErrCount != null">
+        AND login_err_count = #{loginErrCount,jdbcType=INTEGER}
+      </if>
+      <if test="isLocked != null">
+        AND is_locked = #{isLocked,jdbcType=CHAR}
+      </if>
+      <if test="isActive != null">
+        AND is_active = #{isActive,jdbcType=CHAR}
+      </if>
+      <if test="address != null">
+        AND address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="jobnum != null">
+        AND jobnum = #{jobnum,jdbcType=VARCHAR}
+      </if>
+      <if test="ipphone != null">
+        AND ipphone = #{ipphone,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null">
+        AND gender = #{gender,jdbcType=INTEGER}
+      </if>
+      <if test="createdBy != null">
+        AND created_by = #{createdBy,jdbcType=INTEGER}
+      </if>
+      <if test="createdTime != null">
+        AND created_time = #{createdTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="lastUpdatedBy != null">
+        AND last_updated_by = #{lastUpdatedBy,jdbcType=INTEGER}
+      </if>
+      <if test="lastUpdatedTime != null">
+        AND last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="pwdexpiredate != null">
+        AND pwdexpiredate = #{pwdexpiredate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="openId != null">
+        AND open_id = #{openId,jdbcType=VARCHAR}
+      </if>
+      <if test="wcode != null">
+        AND wcode = #{wcode,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </select>
+  <select id="selectEverywhere" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from t_sys_user
+  WHERE id like '%${searchValue}%' or  username like '%${searchValue}%' or  password like '%${searchValue}%' or  display_name like '%${searchValue}%' or  email like '%${searchValue}%' or  cellphone like '%${searchValue}%' or  last_login_time like '%${searchValue}%' or  last_login_ip like '%${searchValue}%' or
+  login_err_count like '%${searchValue}%' or  is_locked like '%${searchValue}%' or  is_active like '%${searchValue}%' or  address like '%${searchValue}%' or  jobnum like '%${searchValue}%' or  ipphone like '%${searchValue}%' or  gender like '%${searchValue}%' or  created_by like '%${searchValue}%' or
+  created_time like '%${searchValue}%' or  last_updated_by like '%${searchValue}%' or  last_updated_time like '%${searchValue}%' or  pwdexpiredate like '%${searchValue}%' or  open_id like '%${searchValue}%' or  wcode like '%${searchValue}%'
+</select>
+  <select id="getByNameTotal" resultType="int" parameterType="java.lang.String">
+    select count(1) from t_sys_user where 1=1  AND username = #{username,jdbcType=VARCHAR} AND is_active = 'Y'
+  </select>
+  <select id="getByNameTotals" resultType="java.lang.Integer" parameterType="map">
+    select count(1) from t_sys_user where 1=1  AND username = #{username,jdbcType=VARCHAR}
+    AND id !=#{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select username from t_sys_user where id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

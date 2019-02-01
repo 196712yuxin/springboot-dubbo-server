@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.SysParameterMapper" >
+  <resultMap id="BaseResultMap" type="org.spring.springboot.domain.SysParameter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="paramvalue" property="paramvalue" jdbcType="VARCHAR" />
+    <result column="paramvalue1" property="paramvalue1" jdbcType="VARCHAR" />
+    <result column="paramvalue2" property="paramvalue2" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="createduserid" property="createduserid" jdbcType="INTEGER" />
+    <result column="createddate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="lastmodifieduserid" property="lastmodifieduserid" jdbcType="INTEGER" />
+    <result column="lastmodifieddate" property="lastmodifieddate" jdbcType="TIMESTAMP" />
+    <result column="is_active" property="isActive" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, description, paramvalue, paramvalue1, paramvalue2, parent_id, createduserid, 
+    createddate, lastmodifieduserid, lastmodifieddate, is_active
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sys_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.spring.springboot.domain.SysParameter" >
+    insert into t_sys_parameter (id, code, name, 
+      description, paramvalue, paramvalue1, 
+      paramvalue2, parent_id, createduserid, 
+      createddate, lastmodifieduserid, lastmodifieddate, 
+      is_active)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{paramvalue,jdbcType=VARCHAR}, #{paramvalue1,jdbcType=VARCHAR}, 
+      #{paramvalue2,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{createduserid,jdbcType=INTEGER}, 
+      #{createddate,jdbcType=TIMESTAMP}, #{lastmodifieduserid,jdbcType=INTEGER}, #{lastmodifieddate,jdbcType=TIMESTAMP}, 
+      #{isActive,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.spring.springboot.domain.SysParameter" >
+    insert into t_sys_parameter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="paramvalue != null" >
+        paramvalue,
+      </if>
+      <if test="paramvalue1 != null" >
+        paramvalue1,
+      </if>
+      <if test="paramvalue2 != null" >
+        paramvalue2,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="createduserid != null" >
+        createduserid,
+      </if>
+      <if test="createddate != null" >
+        createddate,
+      </if>
+      <if test="lastmodifieduserid != null" >
+        lastmodifieduserid,
+      </if>
+      <if test="lastmodifieddate != null" >
+        lastmodifieddate,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue != null" >
+        #{paramvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue1 != null" >
+        #{paramvalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue2 != null" >
+        #{paramvalue2,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createduserid != null" >
+        #{createduserid,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieduserid != null" >
+        #{lastmodifieduserid,jdbcType=INTEGER},
+      </if>
+      <if test="lastmodifieddate != null" >
+        #{lastmodifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.spring.springboot.domain.SysParameter" >
+    update t_sys_parameter
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue != null" >
+        paramvalue = #{paramvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue1 != null" >
+        paramvalue1 = #{paramvalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue2 != null" >
+        paramvalue2 = #{paramvalue2,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createduserid != null" >
+        createduserid = #{createduserid,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        createddate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieduserid != null" >
+        lastmodifieduserid = #{lastmodifieduserid,jdbcType=INTEGER},
+      </if>
+      <if test="lastmodifieddate != null" >
+        lastmodifieddate = #{lastmodifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.spring.springboot.domain.SysParameter" >
+    update t_sys_parameter
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      paramvalue = #{paramvalue,jdbcType=VARCHAR},
+      paramvalue1 = #{paramvalue1,jdbcType=VARCHAR},
+      paramvalue2 = #{paramvalue2,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      createduserid = #{createduserid,jdbcType=INTEGER},
+      createddate = #{createddate,jdbcType=TIMESTAMP},
+      lastmodifieduserid = #{lastmodifieduserid,jdbcType=INTEGER},
+      lastmodifieddate = #{lastmodifieddate,jdbcType=TIMESTAMP},
+      is_active = #{isActive,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

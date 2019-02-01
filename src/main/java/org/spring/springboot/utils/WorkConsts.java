@@ -1,0 +1,66 @@
+package org.spring.springboot.utils;
+
+
+public class WorkConsts
+{
+    public static final String VALIDATE_STYLE_INDEX_O = "0";
+    public static final String VALIDATE_STYLE_INDEX_I = "1";
+    public static final String VALIDATE_STYLE_DATE = "-";
+    public static final String VALIDATE_STYLE_INT = ".";
+    public static final String VALIDATE_STYLE_DATASTYLE = "yyyy-MM-dd";
+    public static final String IS_ACTIVITY_Y = "Y";
+    public static final String IS_ACTIVITY_N = "N";
+    public static final String ERROR = "error";
+    public static final String SUCCESS = "success";
+    public static final int INDEX_0 = 0;
+    public static final int INDEX_1 = 1;
+    public static final String ACTION_UPLOAD_PIC_URL = "/upload/actimage/";
+    public static final String ACTION_STAUS_ADD = "新建";
+    public static final String ACTION_STAUS_DOWN = "已关闭";
+    public static final String ACTION_STAUS_UP = "已审核";
+    public static final String PRIZE_UPLOAD_PIC_URL = "/upload/prizeimage/";
+    public static final String PRIZE_UPLOAD_QR_URL = "/upload/qrimage/";
+    public static final String FINANCING_UPLOAD_PIC_URL = "/upload/financingimage/";
+    public static final String BRANCH_CATEGORY = "wdqy";
+    public static final String POINT_CATEGORY = "point-type";
+    public static final String BANK_CODE = "yhyw";
+    public static final String BANK_CODES = "ydyh";
+    public static final String NOBLEMETAL_CODE = "gjs-type";
+    public static final String NOBLEMETAL_CODE_PERORDER = "nm-private-order";
+    public static final String NOBLEMETAL_CODE_PERORDER_REPEAT = "已经定制过同类型产品";
+    public static final String GAME_GUESS_POINTCODE = "game-guess";
+    public static final String GAME_GUESS_POINTREASON_SUB = "股神竞猜";
+    public static final String GAME_GUESS_POINTREASON_ADD = "股神竞猜中奖";
+    public static final String DRAW_FIRST = "First";
+    public static final String DRAW_SECOND = "Second";
+    public static final String DRAW_THIRD = "Third";
+    public static final String DRAW_FOURTH = "Fourth";
+    public static final String DRAW_FIFTH = "Fifth";
+    public static final String DRAW_SIXTH = "Sixth";
+    public static final String ACTION_NOTES = "(活动报名)";
+    public static final String ACTION_SIGN = "(活动签到)";
+    public static final String POINTTYPE_REGIST = "pointtype-regist";
+    public static final String FUND_POINTCODE = "pointtype-fund-order";
+    public static final String INSURANCE_POINTCODE = "pointtype-insurance-order";
+    public static final String POINTTYPE_QUESTION = "pointtype-question";
+    public static final String POINTTYPE_QUESTION_NUMB = "pointtype-question-numb";
+    public static final String POINTTYPE_QIANDAO = "pointtype-qiandao";
+    public static final String POINTTYPE_FUND_SHARE = "pointtype-fund-share";
+    public static final String POINTTYPE_ACTION_SHARE = "pointtype-action-share";
+    public static final String POINTTYPE_INSURANCE_SHARE = "pointtype-insurance-share";
+    public static final String POINTTYPE_SHARE = "pointtype-share";
+    public static final String YDYH = "移动银行预约";
+    public static final String NOBLEMETAL_ORDER_CODE = "pointtype-noblemetal-order";
+    public static final String NOBLEMETAL_SHARE_CODE = "pointtype-noblemetal-share";
+    public static final String FINANCING_ORDER_CODE = "pointtype-financing-order";
+    public static final String FINANCING_ORDER_CLICK = "pointtype-financing-click";
+    public static final String INSURANCE_ORDER_CLICK = "pointtype-insurance-click";
+    public static final String FUND_ORDER_CLICK = "pointtype-fund-click";
+    public static final String NOBLEMETAL_ORDER_CLICK = "pointtype-noblemetal-click";
+    public static final String INSURANCE_ORDER_CODE = "pointtype-insurance-order";
+    public static final String PRICE_POINT = "POINT";
+    public static final String PRICE_NAME = "快乐转盘抽奖中奖";
+    public static final String PRICE_NAME_XIAO = "快乐转盘抽奖消耗";
+    public static final String FINANCING_SHARE_CODE = "pointtype-financing-share";
+    public static final String PARAMVALUE2 = "xyyy";
+}

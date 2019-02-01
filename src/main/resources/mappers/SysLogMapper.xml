@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="org.spring.springboot.domain.SysLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="operation" property="operation" jdbcType="VARCHAR" />
+    <result column="operationtime" property="operationtime" jdbcType="TIMESTAMP" />
+    <result column="operationuserid" property="operationuserid" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="logcontent" property="logcontent" jdbcType="VARCHAR" />
+    <result column="createduserid" property="createduserid" jdbcType="INTEGER" />
+    <result column="createddate" property="createddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, operation, operationtime, operationuserid, ip, logcontent, createduserid, createddate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sys_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.spring.springboot.domain.SysLog" >
+    insert into t_sys_log (id, operation, operationtime, 
+      operationuserid, ip, logcontent, 
+      createduserid, createddate)
+    values (#{id,jdbcType=INTEGER}, #{operation,jdbcType=VARCHAR}, #{operationtime,jdbcType=TIMESTAMP}, 
+      #{operationuserid,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{logcontent,jdbcType=VARCHAR}, 
+      #{createduserid,jdbcType=INTEGER}, #{createddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.spring.springboot.domain.SysLog" >
+    insert into t_sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="operation != null" >
+        operation,
+      </if>
+      <if test="operationtime != null" >
+        operationtime,
+      </if>
+      <if test="operationuserid != null" >
+        operationuserid,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="logcontent != null" >
+        logcontent,
+      </if>
+      <if test="createduserid != null" >
+        createduserid,
+      </if>
+      <if test="createddate != null" >
+        createddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="operation != null" >
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null" >
+        #{operationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logcontent != null" >
+        #{logcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createduserid != null" >
+        #{createduserid,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.spring.springboot.domain.SysLog" >
+    update t_sys_log
+    <set >
+      <if test="operation != null" >
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null" >
+        operationtime = #{operationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        operationuserid = #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logcontent != null" >
+        logcontent = #{logcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createduserid != null" >
+        createduserid = #{createduserid,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        createddate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.spring.springboot.domain.SysLog" >
+    update t_sys_log
+    set operation = #{operation,jdbcType=VARCHAR},
+      operationtime = #{operationtime,jdbcType=TIMESTAMP},
+      operationuserid = #{operationuserid,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      logcontent = #{logcontent,jdbcType=VARCHAR},
+      createduserid = #{createduserid,jdbcType=INTEGER},
+      createddate = #{createddate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
