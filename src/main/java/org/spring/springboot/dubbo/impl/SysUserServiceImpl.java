@@ -63,7 +63,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
     @Override
     public int updateById(SysUser record) {
-        return this.sysUserMapper.updateById(record);
+        return this.sysUserMapper.updateByPrimaryKeySelective(record);
     }
     @Override
     public int getByNameTotal(String username) {

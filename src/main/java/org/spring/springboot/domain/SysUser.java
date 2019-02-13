@@ -52,6 +52,10 @@ public class SysUser extends BaseDomain {
         this.id = id;
     }
 
+    public void setId(String id) {
+        this.id = Integer.valueOf(id);
+    }
+
     public String getUsername() {
         return this.username;
     }

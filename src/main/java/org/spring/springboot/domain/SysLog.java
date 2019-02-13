@@ -1,7 +1,6 @@
 package org.spring.springboot.domain;
 
 import org.spring.springboot.base.base.BaseDomain;
-
 import java.util.Date;
 
 public class SysLog extends BaseDomain {

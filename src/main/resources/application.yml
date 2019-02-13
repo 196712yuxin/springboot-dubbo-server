@@ -1,3 +1,28 @@
+
+logging:
+  level: debug
+
 server:
   port: 8083   # 默认8080
+  display-name: template
 
+spring:
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://47.105.177.42:3306/lct?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: Root!!2018
+    driver-class-name: com.mysql.jdbc.Driver
+    #连接池配置
+  type: org.apache.commons.dbcp2.BasicDataSource
+  dbcp2:
+    max-wait-millis: 10000
+    max-idle: 10
+    test-on-borrow: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800
+    min-idle: 0
+    initial-size: 5
+    validation-query: SELECT x
+    connection-properties:
+      characterEncoding: utf8

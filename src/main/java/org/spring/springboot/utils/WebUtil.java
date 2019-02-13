@@ -142,4 +142,31 @@ public class WebUtil
 
         return null;
     }
+
+    public static SysUser getCurrentUserByCode() {
+        EncryptUtil utils= EncryptUtil.getInstance();
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        }
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (!ApplicationConfiguration.COOKIE_USER.equals(cookie.getName())) continue;
+                try {
+                    String userCook=utils.Base64Decode(cookie.getValue());
+                    String userFromCookie = URLDecoder.decode(userCook, "utf-8");
+                    JSONObject json = JSONObject.fromObject(userFromCookie);
+                    SysUser user = (SysUser)JSONObject.toBean(json, SysUser.class);
+
+                    return user;
+                }
+                catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return null;
+    }
 }
