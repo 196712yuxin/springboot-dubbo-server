@@ -139,6 +139,12 @@
       last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="deleteById" parameterType="java.lang.Integer" >
+    update  t_sys_role
+    set is_delete=1
+    where id = #{id,jdbcType=INTEGER}
+    and is_delete=0
+  </update>
   <select id="getAllRolt" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -149,12 +155,29 @@
     select
     <include refid="Base_Column_List" />
     from t_sys_role
-    WHERE id like '%${searchValue}%'
-    or  role_name like '%${searchValue}%'
+    WHERE
+    (role_name like '%${searchValue}%'
     or  role_desc like '%${searchValue}%'
-    or  is_active like '%${searchValue}%'
-    or  created_by like '%${searchValue}%'
-    or  created_time like '%${searchValue}%'
+    or  is_active like '%${searchValue}%')
     and  is_delete=0
+  </select>
+    <select id="getByNameTotal" resultType="int" parameterType="java.lang.String">
+    select
+    count(1)
+    from t_sys_role
+     where 1=1
+     AND role_name = #{roleName,jdbcType=VARCHAR}
+     AND is_active = 'Y'
+     AND is_delete=0
+  </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_sys_role
+        where id = #{id,jdbcType=INTEGER}
+        and is_delete=0
+    </select>
+    <select id="getMaxId" resultType="int" parameterType="java.lang.String">
+       select MAX(id) from t_sys_role
   </select>
 </mapper>

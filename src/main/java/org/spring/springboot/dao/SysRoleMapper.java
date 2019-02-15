@@ -24,4 +24,6 @@ public abstract interface SysRoleMapper extends BaseMapper<SysRole>
     public abstract int updateByPrimaryKey(SysRole paramSysRole);
 
     public abstract List<SysRole> getAllRolt();
+
+    public abstract int getMaxId();
 }

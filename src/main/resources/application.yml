@@ -9,7 +9,7 @@ server:
 spring:
   # 数据源配置
   datasource:
-    url: jdbc:mysql://47.105.177.42:3306/lct?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://47.105.177.42:3306/lct?useUnicode=true&characterEncoding=utf8&useSSL=false&useAffectedRows=true
     username: root
     password: Root!!2018
     driver-class-name: com.mysql.jdbc.Driver
