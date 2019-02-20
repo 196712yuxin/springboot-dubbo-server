@@ -7,8 +7,7 @@ import org.spring.springboot.domain.SysUser;
 import java.util.Map;
 
 @Mapper
-public abstract interface SysUserMapper extends BaseMapper<SysUser>
-{
+public abstract interface SysUserMapper extends BaseMapper<SysUser> {
     public abstract int deleteByPrimaryKey(Integer paramInteger);
 
     public abstract int insert(SysUser paramSysUser);
@@ -26,4 +25,6 @@ public abstract interface SysUserMapper extends BaseMapper<SysUser>
     public abstract String selectNameById(Integer paramInteger);
 
     public abstract Integer getByNameTotals(Map paramMap);
+
+    public abstract Integer getBigId();
 }

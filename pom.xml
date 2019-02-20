@@ -12,6 +12,7 @@
     <artifactId>springboot-dubbo-server</artifactId>
     <version>0.0.1</version>
     <name>springboot-dubbo-server</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
     <!-- Spring Boot 启动父依赖 -->
     <parent>

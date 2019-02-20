@@ -20,6 +20,11 @@
     from t_sys_role_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from t_sys_role_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_sys_role_menu
     where id = #{id,jdbcType=INTEGER}
@@ -133,4 +138,76 @@
 		= rm.MENU_ID
 		where ur.USER_ID = #{userid} and m.MENU_HREF = #{pageurl}
   </select>
+
+  <select id="selectEverywhere" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    t_t_sys_role role
+    left  join
+    t_sys_role_menu rolemenu
+    on
+    role.id=rolemenu.role_id
+    WHERE role.id =#{searchValue}
+    and is_delete=0
+  </select>
+
+    <resultMap id="RoleMenuResultMap" type="org.spring.springboot.response.SysRoleMenuResponse" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="role_id" property="roleId" jdbcType="INTEGER" />
+        <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+        <result column="is_active" property="isActive" jdbcType="CHAR" />
+        <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+        <result column="last_updated_by" property="lastUpdatedBy" jdbcType="INTEGER" />
+        <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+        <result column="menu_desc" property="menuDesc" jdbcType="VARCHAR" />
+        <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
+        <result column="menu_type" property="menuType" jdbcType="VARCHAR" />
+        <result column="menu_href" property="menuHref" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="is_show" property="isShow" jdbcType="CHAR" />
+
+        <result property="parentMenu.id" column="parentMenu.id"/>
+        <result property="parentMenu.menuName" column="parentMenu.menuName"/>
+    </resultMap>
+
+    <sql id="RoleMenu_Column_List" >
+    rolemenu.id as id,
+    rolemenu.role_id,
+    rolemenu.menu_id,
+    rolemenu.is_active,
+    rolemenu.created_by,
+    rolemenu.created_time,
+    rolemenu.last_updated_by,
+    rolemenu.last_updated_time,
+     menu.menu_name,
+     menu.menu_desc,
+     menu.menu_icon,
+     menu.menu_type,
+     menu.menu_href,
+     menu.parent_id,
+     menu.sort,
+     menu.is_show,
+     menu.parent_id as "parentMenu.id"
+  </sql>
+    <select id="selectEverywhereId" parameterType="java.util.Map" resultMap="RoleMenuResultMap">
+        select
+        <include refid="RoleMenu_Column_List" />
+        from
+        t_sys_role_menu rolemenu
+        left  join
+        t_sys_role role
+        on
+        role.id=rolemenu.role_id
+        left join
+        t_sys_menu menu
+        on
+        menu.id = rolemenu.menu_id
+        WHERE role.id =#{searchValue}
+        and rolemenu.is_delete=0
+    </select>
 </mapper>

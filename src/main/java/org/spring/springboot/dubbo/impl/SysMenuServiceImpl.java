@@ -1,10 +1,14 @@
 package org.spring.springboot.dubbo.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.spring.springboot.dao.SysMenuMapper;
 import org.spring.springboot.dao.SysRoleMenuMapper;
+import org.spring.springboot.domain.PagerQuery;
 import org.spring.springboot.domain.SysMenu;
 import org.spring.springboot.dubbo.SysMenuService;
+import org.spring.springboot.response.SysMenuFindResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -191,4 +195,31 @@ public class SysMenuServiceImpl implements SysMenuService {
         target.setParentId(menu.getParentMenu().getId());
         return target;
     }
+
+    public SysMenuFindResponse getMenuList(Integer id) {
+        SysMenuFindResponse response = new SysMenuFindResponse();
+        List<SysMenu> menusl = this.sysMenuMapper.selectAll();
+        List<SysMenu> menus = new ArrayList<>();
+        if (menusl != null) {
+            menus = menusl;
+        }
+        List<Integer> removeIds = sysMenuMapper.getByRoleId(id);
+        List<SysMenu> menusRemove = new ArrayList<>();
+        if (menus != null && menus.size() > 0 && removeIds != null && removeIds.size() > 0) {
+            for (SysMenu sysMenu : menus) {
+                for (int remid : removeIds) {
+                    if (remid == sysMenu.getId() && !menusRemove.contains(sysMenu)) {
+                        menusRemove.add(sysMenu);
+                    }
+                }
+            }
+        }
+        if (menusRemove != null) {
+            menus.removeAll(menusRemove);
+        }
+        response.setResult(menus);
+        response.setTotalCount(menus.size());
+        return response;
+    }
+
 }

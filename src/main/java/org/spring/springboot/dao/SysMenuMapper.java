@@ -1,15 +1,14 @@
 package org.spring.springboot.dao;
 
 
-
 import org.apache.ibatis.annotations.Mapper;
+import org.spring.springboot.base.BaseMapper;
 import org.spring.springboot.domain.SysMenu;
 
 import java.util.List;
 
 @Mapper
-public abstract interface SysMenuMapper
-{
+public abstract interface SysMenuMapper extends BaseMapper<SysMenu> {
     public abstract int deleteByPrimaryKey(Integer paramInteger);
 
     public abstract int insert(SysMenu paramSysMenu);
@@ -27,4 +26,6 @@ public abstract interface SysMenuMapper
     public abstract List<SysMenu> getAllRootMenu();
 
     public abstract List<SysMenu> getFunctionByUserId(long paramLong);
+
+    public abstract List<Integer> getByRoleId(Integer roleid);
 }

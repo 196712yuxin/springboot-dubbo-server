@@ -9,6 +9,8 @@ import org.spring.springboot.domain.PagerQuery;
 import org.spring.springboot.domain.SysUser;
 import org.spring.springboot.dubbo.SysUserService;
 import org.spring.springboot.response.SysUserFindResponse;
+import org.spring.springboot.utils.MD5Util;
+import org.spring.springboot.utils.UidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
     @Override
     public Map<String, Object> login(String username, String password, String ip, ErrorStatus errorStatus) {
-        Map map = new HashMap();
-        Map param = new HashMap();
+        Map<String, Object> map = new HashMap();
+        Map<String, Object> param = new HashMap();
         param.put("user", username);
         param.put("pwd", password);
         param.put("ip", ip);
@@ -39,17 +41,22 @@ public class SysUserServiceImpl implements SysUserService {
         this.sysUserMapper.getUserByUsernameAndPassword(param);
 
         int errorCode = Integer.parseInt(String.format("%d", new Object[] { param.get("err_code") }));
+        if (errorStatus != null) {
+            errorStatus.setErrorCode(errorCode);
+            errorStatus.setErrorMessage(String.format("%s", new Object[] { param.get("err_msg") }));
+        }
+
         if ((errorCode == 0) || (errorCode == 1)) {
             map.put("code", Integer.valueOf(errorCode));
             map.put("msg", String.format("%s", new Object[] { param.get("err_msg") }));
             map.put("domain", this.sysUserMapper.selectByPrimaryKey(Integer.valueOf(Integer.parseInt(String.format("%d", new Object[] { param.get("login_user_id") })))));
             return map;
+        }else {
+            map.put("code", Integer.valueOf(errorCode));
+            map.put("msg", String.format("%s", new Object[] { param.get("err_msg") }));
+            return map;
         }
-        if (errorStatus != null) {
-            errorStatus.setErrorCode(errorCode);
-            errorStatus.setErrorMessage(String.format("%s", new Object[] { param.get("err_msg") }));
-        }
-        return null;
+
     }
     @Override
     public SysUserFindResponse selectEverywhere(PagerQuery<SysUser> search) {
@@ -71,6 +78,13 @@ public class SysUserServiceImpl implements SysUserService {
     }
     @Override
     public int insert(SysUser record) {
+ /*       if(record.getId()==null){
+            long ss= UidUtil.getLong(UidUtil.getUIdForSequ());
+            int aa = (int) ss;
+            record.setId(aa);
+        }*/
+        record.setPassword(MD5Util.md5("123456"));
+        record.setLoginErrCount(0);
         return this.sysUserMapper.insert(record);
     }
     @Override

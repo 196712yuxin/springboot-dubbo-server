@@ -24,6 +24,7 @@
     <result column="pwdexpiredate" jdbcType="TIMESTAMP" property="pwdexpiredate" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
     <result column="wcode" jdbcType="VARCHAR" property="wcode" />
+    <result column="is_delete" jdbcType="VARCHAR" property="is_delete" />
   </resultMap>
   <sql id="Base_Column_List">
     id, username, password, display_name, email, cellphone, last_login_time, last_login_ip, 
@@ -35,11 +36,19 @@
     <include refid="Base_Column_List" />
     from t_sys_user
     where id = #{id,jdbcType=INTEGER}
+    AND is_delete=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update  t_sys_user
+    set is_delete=1
+    where id = #{id,jdbcType=INTEGER}
+    AND is_delete=0
+  </update>
   <insert id="insert" parameterType="org.spring.springboot.domain.SysUser">
     insert into t_sys_user (id, username, password, 
       display_name, email, cellphone, 
@@ -263,6 +272,9 @@
       <if test="wcode != null">
         wcode = #{wcode,jdbcType=VARCHAR},
       </if>
+      <if test="is_delete != null">
+        is_delete = #{is_delete,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -375,18 +387,55 @@
   select
   <include refid="Base_Column_List" />
   from t_sys_user
-  WHERE id like '%${searchValue}%' or  username like '%${searchValue}%' or  password like '%${searchValue}%' or  display_name like '%${searchValue}%' or  email like '%${searchValue}%' or  cellphone like '%${searchValue}%' or  last_login_time like '%${searchValue}%' or  last_login_ip like '%${searchValue}%' or
-  login_err_count like '%${searchValue}%' or  is_locked like '%${searchValue}%' or  is_active like '%${searchValue}%' or  address like '%${searchValue}%' or  jobnum like '%${searchValue}%' or  ipphone like '%${searchValue}%' or  gender like '%${searchValue}%' or  created_by like '%${searchValue}%' or
-  created_time like '%${searchValue}%' or  last_updated_by like '%${searchValue}%' or  last_updated_time like '%${searchValue}%' or  pwdexpiredate like '%${searchValue}%' or  open_id like '%${searchValue}%' or  wcode like '%${searchValue}%'
+  WHERE (id like '%${searchValue}%'
+    or  username like '%${searchValue}%'
+    or  password like '%${searchValue}%'
+    or  display_name like '%${searchValue}%'
+    or  email like '%${searchValue}%'
+    or  cellphone like '%${searchValue}%'
+    or  last_login_time like '%${searchValue}%'
+    or  last_login_ip like '%${searchValue}%'
+    or  login_err_count like '%${searchValue}%'
+    or  is_locked like '%${searchValue}%'
+    or  is_active like '%${searchValue}%'
+    or  address like '%${searchValue}%'
+    or  jobnum like '%${searchValue}%'
+    or  ipphone like '%${searchValue}%'
+    or  gender like '%${searchValue}%'
+    or  created_by like '%${searchValue}%'
+    or  created_time like '%${searchValue}%'
+    or  last_updated_by like '%${searchValue}%'
+    or  last_updated_time like '%${searchValue}%'
+    or  pwdexpiredate like '%${searchValue}%'
+    or  open_id like '%${searchValue}%'
+    or  wcode like '%${searchValue}%')
+    and is_delete=0
 </select>
   <select id="getByNameTotal" resultType="int" parameterType="java.lang.String">
-    select count(1) from t_sys_user where 1=1  AND username = #{username,jdbcType=VARCHAR} AND is_active = 'Y'
+    select count(1)
+    from t_sys_user
+    where 1=1
+    AND username = #{username,jdbcType=VARCHAR}
+    AND is_active = 'Y'
+    AND is_delete =0
   </select>
   <select id="getByNameTotals" resultType="java.lang.Integer" parameterType="map">
-    select count(1) from t_sys_user where 1=1  AND username = #{username,jdbcType=VARCHAR}
-    AND id !=#{userId,jdbcType=INTEGER}
+    select count(1)
+    from t_sys_user
+    where 1=1
+     AND username = #{username,jdbcType=VARCHAR}
+     AND id !=#{userId,jdbcType=INTEGER}
+     AND is_delete=0
   </select>
   <select id="selectNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
-    select username from t_sys_user where id = #{id,jdbcType=VARCHAR}
+    select username
+    from t_sys_user
+    where id = #{id,jdbcType=VARCHAR}
+    AND is_delete=0
   </select>
+  <select id="getBigId"  resultType="java.lang.Integer">
+    select max (id)
+    from t_sys_user
+  </select>
+
 </mapper>

@@ -7,6 +7,15 @@ public class BaseDomain
 {
     private static final long serialVersionUID = 1L;
     private Long rowVersion;
+    private Boolean is_delete;
+
+    public Boolean getIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(Boolean is_delete) {
+        this.is_delete = is_delete;
+    }
 
     public Long getRowVersion()
     {

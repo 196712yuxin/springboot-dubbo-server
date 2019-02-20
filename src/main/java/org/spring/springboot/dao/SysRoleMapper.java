@@ -9,8 +9,7 @@ import org.spring.springboot.domain.SysRole;
 import java.util.List;
 
 @Mapper
-public abstract interface SysRoleMapper extends BaseMapper<SysRole>
-{
+public abstract interface SysRoleMapper extends BaseMapper<SysRole> {
     public abstract int deleteByPrimaryKey(Integer paramInteger);
 
     public abstract int insert(SysRole paramSysRole);

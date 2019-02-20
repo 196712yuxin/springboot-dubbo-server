@@ -4,8 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.spring.springboot.domain.SysParameter;
 
 @Mapper
-public abstract interface SysParameterMapper
-{
+public abstract interface SysParameterMapper {
     public abstract int deleteByPrimaryKey(Integer paramInteger);
 
     public abstract int insert(SysParameter paramSysParameter);

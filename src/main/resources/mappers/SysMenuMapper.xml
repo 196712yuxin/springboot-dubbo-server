@@ -221,4 +221,38 @@
     RM.menu_id = P.id AND UR.user_id = #{userid}) AND P.is_active = 'Y'
     ORDER BY P.sort, P.id DESC
   </select>
+
+  <select id="selectEverywhere" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_role_menu
+    WHERE
+    (menu_name like '%${searchValue}%'
+    or  menu_desc like '%${searchValue}%'
+    or  menu_icon like '%${searchValue}%')
+    and  is_delete=0
+  </select>
+
+    <select id="selectAll"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from
+        t_sys_menu menu
+        WHERE
+          is_delete=0
+    </select>
+
+  <select id="getByRoleId" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
+    select
+    rolemenu.menu_id
+    from
+    t_sys_role_menu rolemenu
+    left join
+    t_sys_role role
+    on
+    rolemenu.role_id=role.id
+    WHERE
+    rolemenu.role_id= #{roleid}
+    and  rolemenu.is_delete=0
+  </select>
 </mapper>
